@@ -1,0 +1,6 @@
+/*.log
+.vscode/
+node_modules/
+/coverage/
+/lib/
+/dist/

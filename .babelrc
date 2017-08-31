@@ -1,0 +1,16 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ">2%"
+      }
+    }],
+    "flow",
+    "react"
+  ],
+  "plugins": [
+    "flow-react-proptypes",
+    "transform-object-rest-spread",
+    "transform-class-properties"
+  ]
+}
