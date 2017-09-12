@@ -25,21 +25,40 @@ export default {
       },
       {
         test: /\.css$/,
-        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              sourceMap: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+        use: ['css-hot-loader'].concat(
+          ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                sourceMap: true,
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              },
             },
-          },
-        })),
+          }),
+        ),
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)(\?|$)/,
+        test: /\.(png|woff|woff2|eot|ttf)(\?|$)/,
         use: 'url-loader?limit=100000',
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'react-svg-loader',
+            options: {
+              svgo: {
+                plugins: [{ removeTitle: false }],
+                floatPrecision: 2,
+              },
+            },
+          },
+        ],
       },
     ],
   },

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Polyline, Marker, Popup, LayerGroup } from 'react-leaflet'
+import { Polyline, Marker, LayerGroup, Tooltip } from 'react-leaflet'
 import PropTypes from 'prop-types'
 
 function Path({ waypoints, onMarkerDrag }) {
@@ -12,9 +12,9 @@ function Path({ waypoints, onMarkerDrag }) {
       draggable
       ondrag={e => onMarkerDrag(e, el.id)}
     >
-      <Popup>
+      <Tooltip >
         <span>{el.content}</span>
-      </Popup>
+      </Tooltip>
     </Marker>),
   )
   const dots = waypoints.map(el => el.position)

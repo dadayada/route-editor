@@ -4,7 +4,10 @@ import AppMap from '../map/AppMap'
 import s from './App.css'
 import Controls from '../controls/Controls'
 
-const position = [37.505, -122.09]
+const startViewport = {
+  center: [37.505, -122.09],
+  zoom: 8,
+}
 
 const reorder = (list, startIndex, endIndex) => {
   const [removed] = list.splice(startIndex, 1)
@@ -16,12 +19,23 @@ const reorder = (list, startIndex, endIndex) => {
 class App extends Component {
   constructor(props) {
     super(props)
+    const { clientHeight } = document.documentElement
     this.state = {
       waypoints: [],
       nextId: 3,
-      center: position,
+      dynamicViewport: startViewport,
+      staticViewport: startViewport,
+      clientHeight,
     }
+    this.resizeListener = () => {
+      this.setState({ clientHeight: document.documentElement.clientHeight })
+    }
+    window.addEventListener('resize', this.resizeListener)
     this.onMarkerDrag = this.onMarkerDrag.bind(this)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.resizeListener)
   }
 
   onDragEnd = (result) => {
@@ -49,13 +63,13 @@ class App extends Component {
   }
 
   onNewItem = (input) => {
-    const { nextId, waypoints, center } = this.state
+    const { nextId, waypoints, staticViewport } = this.state
     this.setState({
       waypoints: [
         ...waypoints,
         {
           id: nextId,
-          position: center,
+          position: staticViewport.center,
           content: input,
         },
       ],
@@ -69,24 +83,33 @@ class App extends Component {
   }
 
   onViewportChange = (e) => {
-    this.setState({ center: e.center })
+    this.setState({ staticViewport: e })
+  }
+
+  onItemClick = (position) => {
+    this.setState({
+      dynamicViewport: {
+        center: position,
+        zoom: this.state.staticViewport.zoom,
+      },
+    })
   }
 
   render() {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className={s.appContainer}>
-          <div className={s.controlsWrapper}>
-            <Controls
-              waypoints={this.state.waypoints}
-              onNewItem={this.onNewItem}
-              onItemRemove={this.onItemRemove}
-            />
-          </div>
+          <Controls
+            waypoints={this.state.waypoints}
+            onNewItem={this.onNewItem}
+            onItemRemove={this.onItemRemove}
+            onItemClick={this.onItemClick}
+          />
           <div className={s.mapWrapper}>
             <AppMap
               waypoints={this.state.waypoints}
-              center={position}
+              viewport={this.state.dynamicViewport}
+              height={this.state.clientHeight}
               onMarkerDrag={this.onMarkerDrag}
               onViewportChange={this.onViewportChange}
             />

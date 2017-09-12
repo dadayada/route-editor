@@ -1,13 +1,9 @@
 .mapWrapper {
-  width: 60%;
+  width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .appContainer {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px;
-}
 
-.controlsWrapper {
-  width: 40%;
 }

@@ -6,13 +6,13 @@ import Path from '../Path/Path'
 
 class AppMap extends Component {
   render() {
-    const { waypoints, center, onViewportChange } = this.props
+    const { waypoints, viewport, onViewportChange, height } = this.props
     return (
       <Map
-        zoom={8}
-        center={center}
-        style={{ height: '400px' }}
+        viewport={viewport}
+        style={{ height: `${height}px` }}
         onViewportChange={onViewportChange}
+        zoomControl={false}
       >
         <TileLayer
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
@@ -32,6 +32,10 @@ AppMap.propTypes = {
     content: PropTypes.string,
     position: PropTypes.arrayOf(PropTypes.number),
   })).isRequired,
-  center: PropTypes.arrayOf(PropTypes.number).isRequired,
+  viewport: PropTypes.shape({
+    center: PropTypes.arrayOf(PropTypes.number),
+    zoom: PropTypes.number,
+  }).isRequired,
   onViewportChange: PropTypes.func.isRequired,
+  height: PropTypes.number.isRequired,
 }
