@@ -3,10 +3,13 @@
   justify-content: center;
   flex-wrap: wrap;
   font-size: 14px;
+  height: 100%;
 }
 
 .itemList {
   width: 90%;
+  overflow-y: auto;
+  height: calc(100% - 95px);
 }
 
 .input {

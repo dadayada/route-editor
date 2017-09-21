@@ -5,7 +5,7 @@ import s from './DraggableItem.css'
 import DeleteIcon from './../icons/DeleteIcon'
 import GeoIcon from './../icons/GeoIcon'
 
-function DraggableItem({ itemData, onItemRemove, onItemClick }) {
+const DraggableItem = ({ itemData, onItemRemove, onItemClick }) => {
   const onClick = (e) => {
     e.stopPropagation()
     onItemRemove(itemData.id)
@@ -20,12 +20,19 @@ function DraggableItem({ itemData, onItemRemove, onItemClick }) {
             ref={provided.innerRef}
             {...provided.dragHandleProps}
           >
-            <div className="content">
+            <div className={s.content}>
               <h4>{`waypoint: ${itemData.content}`}</h4>
             </div>
-            <div className={s.controlBlock} role="button">
-              <DeleteIcon onClick={onClick} />
-              <GeoIcon onClick={() => onItemClick(itemData.position)} />
+            <div className={s.buttonsBlock}>
+              <button className={s.button} onClick={onClick}>
+                <DeleteIcon />
+              </button>
+              <button
+                className={s.button}
+                onClick={() => onItemClick(itemData.position)}
+              >
+                <GeoIcon />
+              </button>
             </div>
           </div>
           {provided.placeholder}

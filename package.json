@@ -44,6 +44,7 @@
     "react-svg-loader": "^1.1.1",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.9",
     "webpack": "^3",
     "webpack-dev-server": "^2.5.0"
@@ -58,6 +59,9 @@
     "react-beautiful-dnd": "^2.0.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
-    "react-leaflet": "^1.6.4"
+    "react-leaflet": "^1.6.4",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-act": "^1.4.1"
   }
 }

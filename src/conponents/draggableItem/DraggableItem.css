@@ -13,8 +13,16 @@
 
 }
 
-.controlBlock {
+.buttonsBlock {
   width: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  border: none;
+  background: none;
+  outline: none;
   cursor: pointer;
 }
 

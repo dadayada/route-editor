@@ -4,7 +4,7 @@ import React from 'react'
 import { Polyline, Marker, LayerGroup, Tooltip } from 'react-leaflet'
 import PropTypes from 'prop-types'
 
-function Path({ waypoints, onMarkerDrag }) {
+const Path = ({ waypoints, onMarkerDrag }) => {
   const markers = waypoints.map(el =>
     (<Marker
       key={el.id}
