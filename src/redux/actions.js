@@ -19,4 +19,5 @@ export const AUTOCOMPLETE = {
   FETCH_GEOCODE_REQUEST: createAction('fetch geocode request'),
   FETCH_GEOCODE_SUCCESS: createAction('fetch geocode success'),
   FETCH_GEOCODE_FAIL: createAction('fetch geocode fail'),
+  CLEAR_SUGGESTIONS: createAction('clear suggestions'),
 }

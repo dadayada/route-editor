@@ -8,9 +8,7 @@
     "prod:build": "rimraf dist && cross-env NODE_ENV=production webpack -p  --progress",
     "lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
     "test": "yarn lint && jest --coverage",
-    "flow": "flow",
-    "precommit": "yarn test",
-    "prepush": "yarn test && yarn prod:build"
+    "flow": "flow"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
