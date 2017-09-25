@@ -18,7 +18,10 @@ class Controls extends Component {
     return (
       <div className={`${s.controlsWrapper} ${hidden ? s.hidden : ''}`}>
         <div className={s.searchWrapper}>
-          <SearchContainer isOpen={!hidden} onArrowClick={this.onToogleControls} />
+          <SearchContainer
+            isOpen={!hidden}
+            onArrowClick={this.onToogleControls}
+          />
         </div>
         <WaypointsContainer />
       </div>

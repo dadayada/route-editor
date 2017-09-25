@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import s from './Autocomplete.css'
 import GeoIcon from './../icons/GeoIcon'
 
 const Autocomplete = ({ items, onGeoButtonClick }) => {
   const list = items.map(el => (
-    <li>
+    <li key={el.id}>
       <div className={s.item}>
         <button
           className={s.button}
@@ -12,7 +13,7 @@ const Autocomplete = ({ items, onGeoButtonClick }) => {
         >
           <GeoIcon />
         </button>
-        <span className={s.description}>{el.description}</span>
+        <p className={s.description}>{el.description}</p>
       </div>
     </li>
   ))
@@ -24,3 +25,11 @@ const Autocomplete = ({ items, onGeoButtonClick }) => {
 }
 
 export default Autocomplete
+
+Autocomplete.propTypes = {
+  items: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    description: PropTypes.string,
+  })).isRequired,
+  onGeoButtonClick: PropTypes.func.isRequired,
+}

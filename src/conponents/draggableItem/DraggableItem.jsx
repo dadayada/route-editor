@@ -21,7 +21,7 @@ const DraggableItem = ({ itemData, onItemRemove, onItemClick }) => {
             {...provided.dragHandleProps}
           >
             <div className={s.content}>
-              <h4>{`waypoint: ${itemData.content}`}</h4>
+              <span>{itemData.content}</span>
             </div>
             <div className={s.buttonsBlock}>
               <button className={s.button} onClick={onClick}>

@@ -1,12 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import RightArrowIcon from '../icons/RightArrowIcon'
 import LeftArrowIcon from './../icons/LeftArrowIcon'
-import SearchIcon from '../icons/SearchIcon'
 import s from './SearchBox.css'
 
-const SearchBox = ({ isOpen, onClick, onInput }) => (
-  <div className={s.inputWrapper}>
-    <button className={s.button} onClick={onClick}>
+const SearchBox = ({ isOpen, onClick, onInput, onKeyDown }) => (
+  <div className={s.inputWrapper} onKeyDown={onKeyDown}>
+    <button className={`${s.arrowButton} ${s.button}`} onClick={onClick}>
       {isOpen ? <LeftArrowIcon /> : <RightArrowIcon />}
     </button>
     <input
@@ -15,10 +15,14 @@ const SearchBox = ({ isOpen, onClick, onInput }) => (
       type="text"
       placeholder="Search places"
     />
-    <button className={s.button}>
-      <SearchIcon />
-    </button>
   </div>
   )
 
 export default SearchBox
+
+SearchBox.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  onInput: PropTypes.func.isRequired,
+  onKeyDown: PropTypes.func.isRequired,
+}

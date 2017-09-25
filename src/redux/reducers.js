@@ -57,10 +57,10 @@ const reducer = createReducer(
       nextId: state.nextId,
       waypoints,
     }),
-    [WAYPOINTS.REORDER_WAYPOINTS]: (state, startIndex, endIndex) => ({
+    [WAYPOINTS.REORDER_WAYPOINTS]: (state, indices) => ({
       ...state,
       nextId: state.nextId,
-      waypoints: reorder(state.waypoints, startIndex, endIndex),
+      waypoints: reorder(state.waypoints, indices.startIndex, indices.endIndex),
     }),
     [AUTOCOMPLETE.FETCH_SUGGESTIONS_SUCCESS]: (state, predictions) => ({
       ...state,

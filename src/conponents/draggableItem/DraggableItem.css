@@ -10,7 +10,8 @@
 }
 
 .content {
-
+  width: calc(100% - 35px);
+  word-wrap: break-word;
 }
 
 .buttonsBlock {

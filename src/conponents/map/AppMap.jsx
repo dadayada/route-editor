@@ -14,7 +14,8 @@ const AppMap = props => (
   >
     <TileLayer
       url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-      attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+      // eslint-disable-next-line max-len
+      attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a>"
     />
     {props.waypoints.length > 0 && <Path {...props} />}
   </Map>
@@ -35,4 +36,5 @@ AppMap.propTypes = {
     zoom: PropTypes.number,
   }).isRequired,
   onViewportChange: PropTypes.func.isRequired,
+  height: PropTypes.number.isRequired,
 }

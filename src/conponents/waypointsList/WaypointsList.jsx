@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import DroppableList from '../droppableList/DroppableList'
 import s from './WaypointsList.css'
 
@@ -20,6 +21,23 @@ const WaypointsList = ({
     </div>
   </div>
 )
+
+WaypointsList.defaultProps = {
+  waypoints: [],
+}
+
+WaypointsList.propTypes = {
+  waypoints: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      content: PropTypes.string,
+      position: PropTypes.arrayOf(PropTypes.number),
+    }),
+  ),
+  onItemRemove: PropTypes.func.isRequired,
+  onItemClick: PropTypes.func.isRequired,
+  onNewItem: PropTypes.func.isRequired,
+}
 
 class InputWithShadow extends Component {
   constructor(props) {
@@ -62,6 +80,10 @@ class InputWithShadow extends Component {
       </div>
     )
   }
+}
+
+InputWithShadow.propTypes = {
+  onInputSend: PropTypes.func.isRequired,
 }
 
 export default WaypointsList

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import { DragDropContext } from 'react-beautiful-dnd'
 import s from './App.css'
 import Controls from './../conponents/controls/Controls'
@@ -12,10 +13,10 @@ const App = ({ dispatch }) => {
       return
     }
     dispatch(
-      WAYPOINTS.REORDER_WAYPOINTS(
-        result.source.index,
-        result.destination.index,
-      ),
+      WAYPOINTS.REORDER_WAYPOINTS({
+        startIndex: result.source.index,
+        endIndex: result.destination.index,
+      }),
     )
   }
 
@@ -32,3 +33,7 @@ const App = ({ dispatch }) => {
 }
 
 export default connect()(App)
+
+App.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+}
