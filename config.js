@@ -1,6 +1,6 @@
 // @flow
 
-export const STATIC_PATH = '/'
+export const STATIC_PATH = ''
 export const APP_NAME = 'Hello App!'
 
 export const WDS_PORT = 7000
