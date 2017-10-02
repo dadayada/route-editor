@@ -1,18 +1,32 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { DragDropContext } from 'react-beautiful-dnd'
 import s from './App.css'
-import Controls from './../conponents/controls/Controls'
+import Controls from './../components/controls/Controls'
 import MapContainer from './MapContainer'
-import { WAYPOINTS } from '../redux/actions'
+import { WAYPOINTS, MAP } from '../redux/actions'
 
-const App = ({ dispatch }) => {
-  const onDragEnd = (result) => {
+class App extends Component {
+  constructor(props) {
+    super(props)
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        props.dispatch(
+          MAP.SET_VIEWPORT([
+            position.coords.latitude,
+            position.coords.longitude,
+          ]),
+        )
+      })
+    }
+  }
+
+  onDragEnd = (result) => {
     if (!result.destination) {
       return
     }
-    dispatch(
+    this.props.dispatch(
       WAYPOINTS.REORDER_WAYPOINTS({
         startIndex: result.source.index,
         endIndex: result.destination.index,
@@ -20,16 +34,18 @@ const App = ({ dispatch }) => {
     )
   }
 
-  return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className={s.appContainer}>
-        <Controls />
-        <div className={s.mapWrapper}>
-          <MapContainer />
+  render() {
+    return (
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <div className={s.appContainer}>
+          <Controls />
+          <div className={s.mapWrapper}>
+            <MapContainer />
+          </div>
         </div>
-      </div>
-    </DragDropContext>
-  )
+      </DragDropContext>
+    )
+  }
 }
 
 export default connect()(App)

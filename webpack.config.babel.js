@@ -2,19 +2,28 @@
 import webpack from 'webpack'
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import CompressionPlugin from 'compression-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
-import { WDS_PORT } from './config'
+import { WDS_PORT, STATIC_PATH } from './config'
 
 const isProd = process.env.NODE_ENV === 'production'
 
 export default {
-  entry: ['react-hot-loader/patch', './src'],
+  entry: {
+    app: './src',
+    vendor: [
+      'react',
+      'react-dom',
+      'react-leaflet',
+      'react-beautiful-dnd',
+      'redux',
+      'react-redux',
+    ],
+  },
   output: {
-    filename: 'js/bundle.js',
+    filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: isProd ? '' : `http://localhost:${WDS_PORT}/`,
+    publicPath: isProd ? STATIC_PATH : `http://localhost:${WDS_PORT}/`,
   },
   module: {
     rules: [
@@ -43,23 +52,6 @@ export default {
         test: /\.(png|woff|woff2|eot|ttf)(\?|$)/,
         use: 'url-loader?limit=100000',
       },
-      {
-        test: /\.svg$/,
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-          {
-            loader: 'react-svg-loader',
-            options: {
-              svgo: {
-                plugins: [{ removeTitle: false }],
-                floatPrecision: 2,
-              },
-            },
-          },
-        ],
-      },
     ],
   },
   devtool: isProd ? false : 'source-map',
@@ -74,18 +66,15 @@ export default {
     },
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({ template: 'public/index.html' }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.(js|html)$/,
-      threshold: 10240,
-      minRatio: 0.8,
-    }),
     new ExtractTextPlugin('styles.css'),
   ],
 }

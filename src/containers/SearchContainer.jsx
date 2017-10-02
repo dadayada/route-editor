@@ -2,8 +2,8 @@ import { connect } from 'react-redux'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { getGeoCode, getSuggestions } from './../api'
-import Autocomplete from '../conponents/autocomplete/Autocomplete'
-import SearchBox from '../conponents/searchBox/SearchBox'
+import Autocomplete from '../components/autocomplete/Autocomplete'
+import SearchBox from '../components/searchBox/SearchBox'
 import { MAP, AUTOCOMPLETE } from '../redux/actions'
 
 const mapStateToProps = state => ({
