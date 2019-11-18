@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getGeoCode, getSuggestions } from './../api'
-import Autocomplete from '../components/autocomplete/Autocomplete'
-import SearchBox from '../components/searchBox/SearchBox'
-import { MAP, AUTOCOMPLETE } from '../redux/actions'
+import { getGeoCode, getSuggestions } from '@/api'
+import Autocomplete from '@components/autocomplete/Autocomplete'
+import SearchBox from '@components/searchBox/SearchBox'
+import { MAP, AUTOCOMPLETE } from '@/redux/actions'
 
 const mapStateToProps = state => ({
   suggestions: state.suggestions,
@@ -18,12 +18,16 @@ const mapDispatchToProps = dispatch => ({
     })
   },
   onInput: (input) => {
+    if (!input.trim()) {
+      dispatch(AUTOCOMPLETE.FETCH_SUGGESTIONS_SUCCESS([]))
+      return;
+    }
     getSuggestions(input)
       .then((json) => {
+        console.log(json)
         dispatch(AUTOCOMPLETE.FETCH_SUGGESTIONS_SUCCESS(json))
       })
       .catch((status) => {
-        // eslint-disable-next-line no-console
         console.log(status)
         dispatch(AUTOCOMPLETE.FETCH_SUGGESTIONS_SUCCESS([]))
       })

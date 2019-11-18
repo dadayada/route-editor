@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import s from './Autocomplete.css'
-import GeoIcon from './../icons/GeoIcon'
+import GeoIcon from '@components/icons/GeoIcon'
 
 const Autocomplete = ({ items, onGeoButtonClick }) => {
   const list = items.map(el => (
     <li key={el.id}>
-      <div className={s.item}>
-        <button
-          className={s.button}
-          onClick={() => onGeoButtonClick(el.place_id)}
-        >
+      <div
+        className={s.item}
+        onClick={() => onGeoButtonClick(el.place_id)}
+      >
+        <button className={s.button}>
           <GeoIcon />
         </button>
         <p className={s.description}>{el.description}</p>

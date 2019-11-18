@@ -57,6 +57,10 @@ export default {
   devtool: isProd ? false : 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+      '@components': path.resolve(__dirname, 'src/components/'),
+    },
   },
   devServer: {
     port: WDS_PORT,

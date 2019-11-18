@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
-import AppMap from './../components/map/AppMap'
-import { MAP, WAYPOINTS } from './../redux/actions'
+import AppMap from '@components/map/AppMap'
+import { MAP, WAYPOINTS } from '@/redux/actions'
 
 const changeWaypointPos = (e, id, waypoints) => {
   const { latlng } = e

@@ -2,8 +2,8 @@ import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import PropTypes from 'prop-types'
 import s from './DraggableItem.css'
-import DeleteIcon from './../icons/DeleteIcon'
-import GeoIcon from './../icons/GeoIcon'
+import DeleteIcon from '@components/icons/DeleteIcon'
+import GeoIcon from '@components/icons/GeoIcon'
 
 const DraggableItem = ({ itemData, onItemRemove, onItemClick }) => {
   const onClick = (e) => {

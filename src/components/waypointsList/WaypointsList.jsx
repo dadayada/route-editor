@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DroppableList from '../droppableList/DroppableList'
+import DroppableList from '@components/droppableList/DroppableList'
 import s from './WaypointsList.css'
 
 const WaypointsList = ({
@@ -8,9 +8,11 @@ const WaypointsList = ({
   onItemRemove,
   onItemClick,
   onNewItem,
-}) => (
+}) => {
+  console.log(waypoints)
+  return (
   <div className={s.waypointsList}>
-    <div className={s.waypointsHeader}>Waypoints</div>
+    <div className={s.waypointsHeader}>Locations: </div>
     <InputWithShadow onInputSend={onNewItem} />
     <div className={s.itemList}>
       <DroppableList
@@ -20,7 +22,7 @@ const WaypointsList = ({
       />
     </div>
   </div>
-)
+)}
 
 WaypointsList.defaultProps = {
   waypoints: [],
