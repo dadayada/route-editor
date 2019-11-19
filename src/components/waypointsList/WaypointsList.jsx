@@ -8,9 +8,7 @@ const WaypointsList = ({
   onItemRemove,
   onItemClick,
   onNewItem,
-}) => {
-  console.log(waypoints)
-  return (
+}) => (
   <div className={s.waypointsList}>
     <div className={s.waypointsHeader}>Locations: </div>
     <InputWithShadow onInputSend={onNewItem} />
@@ -22,7 +20,7 @@ const WaypointsList = ({
       />
     </div>
   </div>
-)}
+)
 
 WaypointsList.defaultProps = {
   waypoints: [],
@@ -73,7 +71,7 @@ class InputWithShadow extends Component {
         <input
           className={s.input}
           type="text"
-          placeholder="input new waypoint"
+          placeholder="Add new points"
           onInput={this.onInput}
           onKeyPress={this.onKeyPress}
           onFocus={this.onFocus}

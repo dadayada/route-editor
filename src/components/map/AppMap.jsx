@@ -1,38 +1,26 @@
 // @flow
-import React, { Component, useState, useEffect } from 'react'
+import React from 'react'
 import { Map, TileLayer } from 'react-leaflet'
 import PropTypes from 'prop-types'
 import Path from '@components/Path/Path'
 
-
-class AppMap extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      viewport: props.viewport,
-    }
-  }
-  componentDidUpdate(){
-    console.log(this.state.viewport)
-  }
-  render(){ 
-    return (
-      <Map
-        viewport={this.state.viewport}
-        style={{ height: `${this.props.height}px` }}
-        trackResize
-        onViewportChange={this.props.onViewportChange}
-        zoomControl={false}
-      >
-        <TileLayer
-          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+const AppMap = props => (
+  <Map
+    viewport={props.viewport}
+    style={{ height: `${props.height}px` }}
+    trackResize
+    onViewportChange={props.onViewportChange}
+    zoomControl={false}
+  >
+    <TileLayer
+      url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
           // eslint-disable-next-line max-len
-          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a>"
-        />
-        {this.props.waypoints.length > 0 && <Path {...this.props} />}
-      </Map>
-)}
-}
+      attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a>"
+    />
+    {props.waypoints.length > 0 && <Path {...props} />}
+  </Map>
+  )
+
 
 export default AppMap
 

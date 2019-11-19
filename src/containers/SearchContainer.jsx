@@ -20,11 +20,11 @@ const mapDispatchToProps = dispatch => ({
   onInput: (input) => {
     if (!input.trim()) {
       dispatch(AUTOCOMPLETE.FETCH_SUGGESTIONS_SUCCESS([]))
-      return;
+      return
     }
     getSuggestions(input)
       .then((json) => {
-        console.log(json)
+       // console.log(json)
         dispatch(AUTOCOMPLETE.FETCH_SUGGESTIONS_SUCCESS(json))
       })
       .catch((status) => {
@@ -38,6 +38,7 @@ const mapDispatchToProps = dispatch => ({
     }
   },
 })
+
 
 const Search = ({
   isOpen,
