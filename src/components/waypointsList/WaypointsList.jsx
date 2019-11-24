@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import DroppableList from '../droppableList/DroppableList'
+import DroppableList from '@components/droppableList/DroppableList'
 import s from './WaypointsList.css'
 
 const WaypointsList = ({
@@ -10,7 +10,7 @@ const WaypointsList = ({
   onNewItem,
 }) => (
   <div className={s.waypointsList}>
-    <div className={s.waypointsHeader}>Waypoints</div>
+    <div className={s.waypointsHeader}>Locations: </div>
     <InputWithShadow onInputSend={onNewItem} />
     <div className={s.itemList}>
       <DroppableList
@@ -71,7 +71,7 @@ class InputWithShadow extends Component {
         <input
           className={s.input}
           type="text"
-          placeholder="input new waypoint"
+          placeholder="Add new points"
           onInput={this.onInput}
           onKeyPress={this.onKeyPress}
           onFocus={this.onFocus}

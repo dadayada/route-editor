@@ -13,7 +13,7 @@ const SearchBox = ({ isOpen, onClick, onInput, onKeyDown }) => (
       onInput={e => onInput(e.target.value)}
       className={s.input}
       type="text"
-      placeholder="Search places"
+      placeholder="Search for places"
     />
   </div>
   )

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import WaypointsList from './../components/waypointsList/WaypointsList'
-import { MAP, WAYPOINTS } from './../redux/actions'
+import WaypointsList from '@components/waypointsList/WaypointsList'
+import { MAP, WAYPOINTS } from '@/redux/actions'
 
 const mapStateToProps = state => ({
   waypoints: state.waypoints,

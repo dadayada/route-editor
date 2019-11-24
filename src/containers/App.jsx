@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { DragDropContext } from 'react-beautiful-dnd'
 import s from './App.css'
-import Controls from './../components/controls/Controls'
+import Controls from '@/components/controls/Controls'
 import MapContainer from './MapContainer'
-import { WAYPOINTS, MAP } from '../redux/actions'
+import { WAYPOINTS, MAP } from '@/redux/actions'
 
 class App extends Component {
   constructor(props) {

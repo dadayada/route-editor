@@ -30,6 +30,10 @@ const reducer = createReducer(
         zoom: state.staticViewport.zoom,
         center: position,
       },
+      staticViewport: {
+        zoom: state.staticViewport.zoom,
+        center: position,
+      },
     }),
     [MAP.VIEWPORT_CHANGED]: (state, viewport) => ({
       ...state,
