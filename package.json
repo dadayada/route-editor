@@ -51,7 +51,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "leaflet": "^1.2.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "prop-types": "^15.5.10",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
